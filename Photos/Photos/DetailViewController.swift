@@ -23,7 +23,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         self.imageView.image = image ?? nil
         self.likesNumber.text = String(photo.likes) + " likes"
-        self.date.text = "time created: " + photo.date
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let date = NSDate(timeIntervalSince1970: NSTimeInterval(photo.date)!)
+        self.date.text = "time created: " + dateFormatter.stringFromDate(date)
         self.username.text = "Username: " + photo.username
         
         _ = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: photo.url2)!) {

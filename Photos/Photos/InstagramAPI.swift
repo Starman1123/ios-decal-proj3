@@ -7,10 +7,32 @@
 //
 
 import Foundation
+import Alamofire
+
 
 class InstagramAPI {
+
+    let url1: NSURL = NSURL(string: "https://api.instagram.com/v1/media/popular?client_id=01825446a0d34fc5a7cee5ea7a4a59f7")!
+    let url2: NSURL = NSURL(string: "https://api.instagram.com/v1/media/search?lat=37.8716667&lng=-122.2716667&client_id=01825446a0d34fc5a7cee5ea7a4a59f7")!
+    static let baseURLString = "https://api.instagram.com"
+    static let clientID = "01825446a0d34fc5a7cee5ea7a4a59f7"
+    static let clientSecret = "245df10595f040908da523ab8a88b121"
+    static let redirectURI = "http://shanew92.com/"
+    static let getCodeURI = "https://api.instagram.com/oauth/authorize/?client_id=01825446a0d34fc5a7cee5ea7a4a59f7&redirect_uri=http://shanew92.com/&response_type=code"
+    
+    static func getRequestAccessTokenURLStringAndParams(code: String) -> (URLString: String, Params: [String: AnyObject]) {
+        let params = ["client_id": self.clientID, "client_secret": self.clientSecret, "grant_type": "authorization_code", "redirect_uri": self.redirectURI, "code": code]
+        let urlString = self.baseURLString + "/oauth/access_token"
+        return (urlString, params)
+    }
+    
+    static func getCode() -> NSURLRequest {
+        let URLRequest = NSURLRequest(URL: NSURL(string: self.getCodeURI)!)
+        return URLRequest
+    }
+    
     /* Connects with the Instagram API and pulls resources from the server. */
-    func loadPhotos(completion: (([Photo]) -> Void)!) {
+    func loadPhotos(urlNum: Int, completion: (([Photo]) -> Void)!) {
         /*
         * 1. Get the endpoint URL to the popular photos
         *    HINT: Look in Utils
@@ -23,8 +45,11 @@ class InstagramAPI {
         *       d. Wait for completion of Photos array
         */
         // FILL ME IN
-        let url: NSURL = NSURL(string: "https://api.instagram.com/v1/media/popular?client_id=01825446a0d34fc5a7cee5ea7a4a59f7")!
-        
+
+        var url: NSURL = url1
+        if urlNum == 1 {
+            url = url2
+        }
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in

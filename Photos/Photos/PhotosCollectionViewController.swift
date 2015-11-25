@@ -14,10 +14,21 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let item: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("loginButtonTapped:"))
+        self.navigationItem.rightBarButtonItem = item
+        
+        var intNum = 0
+        if self.title == "Berkeley" {
+            intNum = 1
+        }
 
         let api = InstagramAPI()
-        api.loadPhotos(didLoadPhotos)
+        api.loadPhotos(intNum, completion: didLoadPhotos)
         
+        
+        print("intNum is \(intNum)")
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 170, height: 170)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
@@ -35,6 +46,13 @@ class PhotosCollectionViewController: UICollectionViewController {
      * Examples include cellForItemAtIndexPath, numberOfSections, etc.
      */
     
+    func loginButtonTapped(sender: AnyObject) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc = storyBoard.instantiateViewControllerWithIdentifier("loginView") as! LoginViewController
+        let nv = UINavigationController(rootViewController: vc)
+        self.presentViewController(nv, animated: true, completion: nil)
+    }
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CollectionViewCell
         cell.tags = [indexPath.section, indexPath.row]
@@ -45,7 +63,8 @@ class PhotosCollectionViewController: UICollectionViewController {
             }
             else
             {
-                let photo = photos![indexPath.section*2+indexPath.row] 
+                let photo = photos![indexPath.section*2+indexPath.row]
+                
                 _ = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: photo.url)!) {
                     (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                     if error == nil {
@@ -57,7 +76,8 @@ class PhotosCollectionViewController: UICollectionViewController {
                             })
                         }
                     }
-                }.resume()
+                    }.resume()
+                
             }
         }
         return cell
@@ -79,23 +99,6 @@ class PhotosCollectionViewController: UICollectionViewController {
         return 2
     }
     
-    
-    /* Creates a session from a photo's url to download data to instantiate a UIImage. 
-       It then sets this as the imageView's image. */
-    func loadImageForCell(photo: Photo, imageView: UIImageView, cell: CollectionViewCell, indexPath: NSIndexPath) {
-        _ = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: photo.url)!) {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if error == nil {
-                if cell.tags == [indexPath.section,indexPath.row] {
-                    imageView.image = UIImage(data: data!)
-                    self.images[photo.url] = UIImage(data: data!)
-                    cell.setNeedsLayout()
-                }
-            }
-        }.resume()
-    }
-    
-    /* Completion handler for API call. DO NOT CHANGE */
     func didLoadPhotos(photos: [Photo]) {
         self.photos = photos
         
