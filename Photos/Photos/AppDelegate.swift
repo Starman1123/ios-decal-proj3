@@ -13,10 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var access_token : String?
+    var client_id: String?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         access_token = ""
+        client_id = "01825446a0d34fc5a7cee5ea7a4a59f7"
         return true
     }
 

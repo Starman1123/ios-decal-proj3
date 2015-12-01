@@ -9,8 +9,8 @@
 import UIKit
 
 class PhotosCollectionViewController: UICollectionViewController {
-    var photos: [Photo]? = []
-    var images: [String: UIImage] = [:]
+    var photos: Array<Photo> = Array<Photo>()
+    var imageCache: NSCache = NSCache()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         
         print("intNum is \(intNum)")
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 170, height: 170)
+        layout.itemSize = CGSize(width: UIScreen.mainScreen().bounds.width/2-5 , height: UIScreen.mainScreen().bounds.width/2-5)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView!.delegate = self
         collectionView!.dataSource = self
@@ -56,14 +56,15 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CollectionViewCell
         cell.tags = [indexPath.section, indexPath.row]
-        cell.imageView.image = nil
-        if photos!.count>0 {
-            if ((images.keys.contains(photos![indexPath.section*2+indexPath.row].url)) != false) {
-                cell.imageView.image = images[photos![indexPath.section*2+indexPath.row].url]
+        if photos.count>0 {
+            
+            if imageCache.objectForKey(photos[indexPath.section*2+indexPath.row].url) != nil {
+                cell.imageView.image = imageCache.objectForKey(photos[indexPath.section*2+indexPath.row].url) as? UIImage
             }
             else
             {
-                let photo = photos![indexPath.section*2+indexPath.row]
+                cell.imageView.image = nil
+                let photo = photos[indexPath.section*2+indexPath.row]
                 
                 _ = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: photo.url)!) {
                     (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
@@ -71,13 +72,12 @@ class PhotosCollectionViewController: UICollectionViewController {
                         if cell.tags == [indexPath.section,indexPath.row] {
                             dispatch_async(dispatch_get_main_queue(), {
                                 cell.imageView.image = UIImage(data: data!)
-                                self.images[photo.url] = UIImage(data: data!)
+                                self.imageCache.setObject(UIImage(data: data!)!, forKey: photo.url)
                                 cell.setNeedsLayout()
                             })
                         }
                     }
-                    }.resume()
-                
+                }.resume()
             }
         }
         return cell
@@ -86,13 +86,13 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-        vc.photo = photos![indexPath.section*2+indexPath.row]
-        vc.image = images[vc.photo.url]
+        vc.photo = photos[indexPath.section*2+indexPath.row]
+        vc.image = imageCache.objectForKey(vc.photo.url) as! UIImage
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return (photos?.count)!/2 ?? 0
+        return (photos.count)/2 ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -101,7 +101,6 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     func didLoadPhotos(photos: [Photo]) {
         self.photos = photos
-        
         collectionView!.reloadData()
     }
     

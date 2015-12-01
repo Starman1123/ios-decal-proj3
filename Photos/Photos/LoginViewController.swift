@@ -78,7 +78,12 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
                         print("access_token is \(accessToken)")
                         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                         appDelegate.access_token = accessToken
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        let ac = UIAlertController(title: "Photos", message: "You have successfully signed in!", preferredStyle: UIAlertControllerStyle.Alert)
+                        let action = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                        ac.addAction(action)
+                        self.presentViewController(ac, animated: true, completion: nil)
                     }
                 case .Failure:
                     break;

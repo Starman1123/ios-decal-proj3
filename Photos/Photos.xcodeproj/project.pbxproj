@@ -17,6 +17,12 @@
 		3A1683A71BE9C593009F39C5 /* InstagramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1683A61BE9C593009F39C5 /* InstagramAPI.swift */; };
 		3A1683A91BE9C5A7009F39C5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1683A81BE9C5A7009F39C5 /* Photo.swift */; };
 		46AE36FF1C053FAE009C8F58 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AE36FE1C053FAE009C8F58 /* LoginViewController.swift */; };
+		46AE37011C067BE6009C8F58 /* Fire Element-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 46AE37001C067BE6009C8F58 /* Fire Element-25.png */; };
+		46AE37031C067BEC009C8F58 /* Search-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 46AE37021C067BEC009C8F58 /* Search-25.png */; };
+		46AE37051C067BF1009C8F58 /* Marker-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 46AE37041C067BF1009C8F58 /* Marker-25.png */; };
+		46AE37071C067D2C009C8F58 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AE37061C067D2C009C8F58 /* SearchTableViewController.swift */; };
+		46AE37091C06856A009C8F58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AE37081C06856A009C8F58 /* User.swift */; };
+		46AE370B1C069591009C8F58 /* default_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 46AE370A1C069591009C8F58 /* default_user.png */; };
 		46D6A9B01BFAEE59005AE67C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D6A9AF1BFAEE59005AE67C /* DetailViewController.swift */; };
 		46D6A9B31BFB029E005AE67C /* Like.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D6A9B11BFB029E005AE67C /* Like.png */; };
 		46D6A9B41BFB029E005AE67C /* LikeFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D6A9B21BFB029E005AE67C /* LikeFilled.png */; };
@@ -34,6 +40,12 @@
 		3A1683A61BE9C593009F39C5 /* InstagramAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramAPI.swift; sourceTree = "<group>"; };
 		3A1683A81BE9C5A7009F39C5 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		46AE36FE1C053FAE009C8F58 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		46AE37001C067BE6009C8F58 /* Fire Element-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fire Element-25.png"; sourceTree = "<group>"; };
+		46AE37021C067BEC009C8F58 /* Search-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search-25.png"; sourceTree = "<group>"; };
+		46AE37041C067BF1009C8F58 /* Marker-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker-25.png"; sourceTree = "<group>"; };
+		46AE37061C067D2C009C8F58 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		46AE37081C06856A009C8F58 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		46AE370A1C069591009C8F58 /* default_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_user.png; sourceTree = "<group>"; };
 		46D6A9AF1BFAEE59005AE67C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		46D6A9B11BFB029E005AE67C /* Like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Like.png; sourceTree = "<group>"; };
 		46D6A9B21BFB029E005AE67C /* LikeFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LikeFilled.png; sourceTree = "<group>"; };
@@ -77,6 +89,10 @@
 			children = (
 				46D6A9B11BFB029E005AE67C /* Like.png */,
 				46D6A9B21BFB029E005AE67C /* LikeFilled.png */,
+				46AE37001C067BE6009C8F58 /* Fire Element-25.png */,
+				46AE37021C067BEC009C8F58 /* Search-25.png */,
+				46AE37041C067BF1009C8F58 /* Marker-25.png */,
+				46AE370A1C069591009C8F58 /* default_user.png */,
 				3A1683A51BE9C54F009F39C5 /* API */,
 				3A1683A41BE9C548009F39C5 /* Views */,
 				3A1683A11BE9B70C009F39C5 /* Utils */,
@@ -103,6 +119,7 @@
 				3A1683911BE9B642009F39C5 /* PhotosCollectionViewController.swift */,
 				46D6A9AF1BFAEE59005AE67C /* DetailViewController.swift */,
 				46AE36FE1C053FAE009C8F58 /* LoginViewController.swift */,
+				46AE37061C067D2C009C8F58 /* SearchTableViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -112,6 +129,7 @@
 			children = (
 				3A1683A61BE9C593009F39C5 /* InstagramAPI.swift */,
 				3A1683A81BE9C5A7009F39C5 /* Photo.swift */,
+				46AE37081C06856A009C8F58 /* User.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -197,8 +215,12 @@
 			files = (
 				46D6A9B31BFB029E005AE67C /* Like.png in Resources */,
 				3A16839A1BE9B642009F39C5 /* LaunchScreen.storyboard in Resources */,
+				46AE370B1C069591009C8F58 /* default_user.png in Resources */,
+				46AE37031C067BEC009C8F58 /* Search-25.png in Resources */,
 				3A1683971BE9B642009F39C5 /* Assets.xcassets in Resources */,
 				3A1683951BE9B642009F39C5 /* Main.storyboard in Resources */,
+				46AE37011C067BE6009C8F58 /* Fire Element-25.png in Resources */,
+				46AE37051C067BF1009C8F58 /* Marker-25.png in Resources */,
 				46D6A9B41BFB029E005AE67C /* LikeFilled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,8 +285,10 @@
 				3A1683901BE9B642009F39C5 /* AppDelegate.swift in Sources */,
 				3A1683A31BE9B717009F39C5 /* Utils.swift in Sources */,
 				46D6A9B01BFAEE59005AE67C /* DetailViewController.swift in Sources */,
+				46AE37091C06856A009C8F58 /* User.swift in Sources */,
 				3A1683A71BE9C593009F39C5 /* InstagramAPI.swift in Sources */,
 				3A1683A91BE9C5A7009F39C5 /* Photo.swift in Sources */,
+				46AE37071C067D2C009C8F58 /* SearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
