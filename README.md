@@ -1,5 +1,7 @@
 # Project 3: Photo Social Network App
 
+## Please open Photos.xcworkspace not Photos.xcodeproj since this project uses Cocoapods. 
+
 ## Due
 Monday, November 16 at 11:59 PM
 
